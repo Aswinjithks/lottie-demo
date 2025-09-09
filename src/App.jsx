@@ -11,6 +11,7 @@ import businessCrossed from "./assets/businessman-stand-with-arms-crossed.json";
 import umbrella from "./assets/businessman-holding-umbrella.json";
 import confuse from "./assets/Confuse women.json";
 
+// Create animation list
 const animations = [
   { name: "Thinking", data: manThinking },
   { name: "Diary", data: manWithDiary },
@@ -22,22 +23,30 @@ const animations = [
 ];
 
 function App() {
-  const [selected, setSelected] = useState(animations[0]); 
+  const [selected, setSelected] = useState(animations[0]); // default first animation
 
   return (
     <div style={{ padding: "20px", textAlign: "center" }}>
-      <div style={{ width: 400, margin: "0 auto" }}>
-        <Lottie animationData={selected.data} loop />
-        <h2>{selected.name}</h2>
+      {/* Preview area */}
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "500px",
+          margin: "0 auto",
+        }}
+      >
+        <Lottie animationData={selected.data} loop style={{ width: "100%" }} />
+        <h2 style={{ fontSize: "1.2rem", marginTop: "10px" }}>{selected.name}</h2>
       </div>
 
+      {/* Animation buttons */}
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          gap: "20px",
-          marginTop: "40px",
+          gap: "15px",
+          marginTop: "30px",
         }}
       >
         {animations.map((anim, index) => (
@@ -49,15 +58,29 @@ function App() {
                 selected.name === anim.name
                   ? "3px solid #4CAF50"
                   : "2px solid #ccc",
-              borderRadius: "10px",
+              borderRadius: "12px",
               padding: "10px",
               cursor: "pointer",
               background: "white",
-              width: 150,
+              width: "140px",
+              flex: "1 1 120px", // responsive width
+              maxWidth: "160px",
             }}
           >
-            <Lottie animationData={anim.data} loop style={{ height: 100 }} />
-            <p style={{ marginTop: "10px" }}>{anim.name}</p>
+            <Lottie
+              animationData={anim.data}
+              loop
+              style={{ height: "100px", width: "100%" }}
+            />
+            <p
+              style={{
+                marginTop: "8px",
+                fontSize: "0.9rem",
+                wordWrap: "break-word",
+              }}
+            >
+              {anim.name}
+            </p>
           </button>
         ))}
       </div>
